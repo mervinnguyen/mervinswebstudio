@@ -144,6 +144,9 @@
 
   /* About */
   .about { display: grid; grid-template-columns: 1fr 1.3fr; gap: 3rem; align-items: start; }
+  .about .portrait { position: relative; margin: 0 0 1.75rem; max-width: 20rem; aspect-ratio: 4 / 5; border-radius: 1.5rem; overflow: hidden; background: var(--fog); border: 1px solid var(--line); display: flex; align-items: flex-end; justify-content: center; }
+  .about .portrait::before { content: ""; position: absolute; left: 12%; top: 6%; width: 76%; aspect-ratio: 1; border-radius: 50%; background: var(--marigold); }
+  .about .portrait img { position: relative; width: 88%; height: auto; display: block; }
   .about blockquote { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.2; max-width: 20ch; }
   @media (max-width: 860px) { .about { grid-template-columns: 1fr; gap: 1.5rem; } }
 
@@ -189,6 +192,7 @@
   <section class="hero">
     <div class="wrap">
       <h1>Websites built with the discipline of firmware.</h1>
+
       <p class="lede">I'm an Embedded Software Engineer who builds websites for small businesses, rental hosts, and professionals. Every site is fast, secure, and simple for you to keep up to date.</p>
       <div class="actions">
         <a class="btn" href="#contact">Book a free 15-minute call</a>
@@ -293,7 +297,12 @@
 
   <section class="block" id="about">
     <div class="wrap about">
-      <blockquote>By day I build firmware for self-driving cars. For my clients, I build websites that just work.</blockquote>
+      <div>
+        <figure class="portrait">
+          <img src="images/mervin-nguyen.png" alt="Mervin Nguyen in a navy suit, smiling" width="408" height="612" loading="lazy">
+        </figure>
+        <blockquote>By day I build firmware for self-driving cars. For my clients, I build websites that just work.</blockquote>
+      </div>
       <div>
         <p>I'm Mervin Nguyen, a Firmware Engineer at Zoox, the autonomous vehicle company. My day job is writing software that runs on real hardware in the real world, where "it usually works" isn't good enough.</p>
         <p>I started Mervin's Web Studio to give small businesses and independent professionals that same level of care. When you work with me, you work with me directly: no agency hand-offs, no account managers, no waiting a week for a reply. You get a fast, mobile-friendly site that makes a strong first impression, is easy to find, and turns visitors into calls and bookings.</p>

@@ -70,7 +70,31 @@
   .btn:hover { background: #1f3160; border-color: #1f3160; }
   .btn.ghost { background: transparent; color: var(--harbor); }
   .btn.ghost:hover { background: var(--harbor); color: var(--paper); }
-  @media (max-width: 760px) { .nav { display: none; } }
+  .menu-btn, .nav .nav-cta { display: none; }
+  @media (max-width: 760px) {
+    .top .wrap { height: 3.75rem; gap: .6rem; }
+    .brand { font-size: 1.05rem; white-space: nowrap; margin-right: auto; }
+    .brand-mark { width: 1.7rem; height: 1.7rem; }
+    .top .btn { padding: .55rem 1rem; font-size: .92rem; white-space: nowrap; }
+    .menu-btn {
+      display: grid; place-items: center; width: 2.75rem; height: 2.75rem; flex: none;
+      border: 1px solid var(--line); border-radius: .7rem; background: var(--paper); color: var(--harbor); cursor: pointer;
+    }
+    .menu-btn svg { width: 1.3rem; height: 1.3rem; }
+    .menu-btn .close, .top.open .menu-btn .open { display: none; }
+    .top.open .menu-btn .close { display: block; }
+    .nav {
+      display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 20px 30px -20px rgba(20, 33, 61, .35);
+      padding: .5rem 1.25rem 1rem;
+    }
+    .top.open .nav { display: flex; }
+    .nav a { padding: .9rem 0; font-size: 1.1rem; border-bottom: 1px solid var(--fog); }
+    .nav a:last-child { border-bottom: 0; }
+    .nav .nav-cta { display: block; margin-top: .75rem; padding: .9rem 1rem; text-align: center; color: var(--paper); }
+  }
+  @media (max-width: 480px) { .top .wrap > .btn { display: none; } }
+  @media (max-width: 330px) { .brand-name { display: none; } }
 
   /* Hero */
   .hero { padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(3rem, 7vw, 5rem); }
@@ -168,6 +192,21 @@
 
   footer { padding: 2.5rem 0 3rem; font-family: var(--display); font-size: .95rem; color: var(--slate); }
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+
+  /* Phones */
+  .contact > * { min-width: 0; }
+  .contact a { overflow-wrap: anywhere; }
+  @media (max-width: 560px) {
+    body { font-size: 1.0625rem; }
+    .hero .actions .btn, .about .btn, .contact .btn { display: block; width: 100%; text-align: center; padding-block: .95rem; }
+    .contact .btn { justify-self: stretch; }
+    .svc { padding: 1.4rem; }
+    .shot-body { min-height: 11rem; padding: 1.5rem; }
+    .about .portrait { max-width: 17rem; margin-inline: auto; }
+    .contact { padding: 1.75rem 1.25rem; border-radius: 1.25rem; gap: 2rem; }
+    .contact h2 { margin-bottom: .75rem; }
+    footer .wrap { flex-direction: column; gap: .5rem; }
+  }
 </style>
 </head>
 <body>
@@ -176,15 +215,20 @@
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Mervin's Web Studio home">
       <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#14213D"/><path d="M14 44V20l12 14 12-14v24" fill="none" stroke="#F2B632" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="44" r="4" fill="#F2B632"/></svg>
-      Mervin's Web Studio
+      <span class="brand-name">Mervin's Web Studio</span>
     </a>
-    <nav class="nav" aria-label="Main">
+    <nav class="nav" id="site-nav" aria-label="Main">
       <a href="#services">Services</a>
       <a href="#work">Work</a>
       <a href="#process">Process</a>
       <a href="#about">About</a>
+      <a class="btn nav-cta" href="#contact">Book a free call</a>
     </nav>
     <a class="btn" href="#contact">Book a free call</a>
+    <button class="menu-btn" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
+      <svg class="open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
   </div>
 </header>
 
@@ -355,6 +399,18 @@
 
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Mobile menu
+  var topBar = document.querySelector('.top');
+  var menuBtn = topBar.querySelector('.menu-btn');
+  function setMenu(open) {
+    topBar.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  menuBtn.addEventListener('click', function () { setMenu(!topBar.classList.contains('open')); });
+  topBar.querySelectorAll('.nav a, .btn').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
 
   // Live page-speed readout
   function showLoad() {

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mervin's Web Studio | Fast, reliable websites for businesses, hosts, and professionals</title>
+<meta name="description" content="Custom websites built by a firmware engineer. Business sites, direct-booking sites for rental hosts, and professional portfolios. Fast, secure, and easy to maintain.">
+<meta property="og:title" content="Mervin's Web Studio">
+<meta property="og:description" content="Fast, reliable websites for small businesses, rental hosts, and professionals.">
+<meta property="og:url" content="https://mervinswebstudio.com">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%2314213D'/><path d='M14 44V20l12 14 12-14v24' fill='none' stroke='%23F2B632' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/><circle cx='50' cy='44' r='4' fill='%23F2B632'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fog: #E9EEF2;
+    --paper: #F7F9FB;
+    --harbor: #14213D;
+    --slate: #5B6B7F;
+    --marigold: #F2B632;
+    --line: #C9D3DD;
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --wrap: 72rem;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(4.5rem + env(safe-area-inset-top, 0px)); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+  body {
+    margin: 0;
+    background: var(--fog);
+    color: var(--harbor);
+    font-family: var(--body);
+    font-size: 1.125rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--marigold); outline-offset: 3px; border-radius: 4px; }
+  .wrap { width: min(var(--wrap), 100% - 2.5rem); margin-inline: auto; }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.08; margin: 0; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 800; max-width: 20ch; }
+  h3 { font-size: 1.5rem; font-weight: 700; }
+  p { margin: 0 0 1em; max-width: 62ch; }
+
+  /* Header */
+  .top {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+    background: rgba(233, 238, 242, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 4.25rem; gap: 1rem; }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 1.2rem; text-decoration: none; display: flex; align-items: center; gap: .6rem; }
+  .brand-mark { width: 1.9rem; height: 1.9rem; }
+  .nav { display: flex; gap: 1.75rem; font-family: var(--display); font-weight: 500; font-size: 1rem; }
+  .nav a { text-decoration: none; }
+  .nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .btn {
+    display: inline-block; font-family: var(--display); font-weight: 700; font-size: 1rem;
+    padding: .8rem 1.35rem; border-radius: 999px; text-decoration: none; border: 2px solid var(--harbor);
+    background: var(--harbor); color: var(--paper); cursor: pointer;
+  }
+  .btn:hover { background: #1f3160; border-color: #1f3160; }
+  .btn.ghost { background: transparent; color: var(--harbor); }
+  .btn.ghost:hover { background: var(--harbor); color: var(--paper); }
+  @media (max-width: 760px) { .nav { display: none; } }
+
+  /* Hero */
+  .hero { padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(3rem, 7vw, 5rem); }
+  .hero h1 { font-size: clamp(2.7rem, 7.5vw, 5.6rem); font-weight: 800; max-width: 14ch; }
+  .hero .lede { font-size: clamp(1.15rem, 2vw, 1.35rem); margin-top: 1.75rem; color: #2c3a55; max-width: 48ch; }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 2rem; }
+
+  /* The one bold element: a live measurement of this very page */
+  .readout {
+    margin-top: clamp(3rem, 7vw, 4.5rem);
+    background: var(--harbor); color: var(--paper);
+    border-radius: 1.25rem; padding: clamp(1.5rem, 4vw, 2.5rem);
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; align-items: end;
+  }
+  .readout-time { font-family: var(--display); font-weight: 800; font-size: clamp(3.5rem, 11vw, 7.5rem); line-height: .9; color: var(--marigold); font-variant-numeric: tabular-nums; }
+  .readout-sentence { font-family: var(--display); font-size: clamp(1.1rem, 2.2vw, 1.4rem); font-weight: 500; margin-top: .9rem; max-width: 30ch; }
+  .readout-bar { height: .6rem; border-radius: 99px; background: rgba(247, 249, 251, .15); overflow: hidden; margin-top: 1.4rem; }
+  .readout-bar span { display: block; height: 100%; width: 0; background: var(--marigold); border-radius: 99px; transition: width 900ms cubic-bezier(.2,.7,.2,1); }
+  .readout-notes { font-size: 1rem; color: #c3cedb; }
+  .readout-notes p { margin: 0 0 .6rem; }
+  .readout-notes strong { color: var(--paper); font-weight: 600; }
+  @media (max-width: 760px) { .readout { grid-template-columns: 1fr; } }
+
+  /* Sections */
+  section.block { padding: clamp(3.5rem, 8vw, 6rem) 0; border-top: 1px solid var(--line); }
+  .intro { margin-top: 1.25rem; color: #2c3a55; }
+
+  /* Services: deliberately uneven so each audience gets its own shape */
+  .services { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.25rem; margin-top: 2.75rem; }
+  .svc { background: var(--paper); border: 1px solid var(--line); border-radius: 1rem; padding: 1.75rem; display: flex; flex-direction: column; }
+  .svc.business { grid-column: span 3; }
+  .svc.rental { grid-column: span 3; background: var(--harbor); color: var(--paper); border-color: var(--harbor); }
+  .svc.rental .price, .svc.rental li::marker { color: var(--marigold); }
+  .svc.rental p, .svc.rental li { color: #d6dee8; }
+  .svc.portfolio { grid-column: span 4; }
+  .svc.care { grid-column: span 2; background: var(--marigold); border-color: var(--marigold); }
+  .svc .for { font-family: var(--display); font-weight: 500; font-size: 1rem; margin-bottom: .5rem; }
+  .svc .price { font-family: var(--display); font-weight: 800; font-size: 1.75rem; margin: .9rem 0 .4rem; }
+  .svc .price small { font-size: 1rem; font-weight: 500; }
+  .svc ul { margin: .6rem 0 0; padding-left: 1.1rem; font-size: 1.05rem; }
+  .svc li { margin-bottom: .35rem; }
+  .svc li::marker { color: var(--slate); }
+  @media (max-width: 900px) { .svc.business, .svc.rental, .svc.portfolio, .svc.care { grid-column: span 6; } }
+
+  /* Work */
+  .work { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.5rem; margin-top: 2.75rem; align-items: center; }
+  .shot {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 1rem; overflow: hidden;
+    box-shadow: 0 30px 60px -30px rgba(20, 33, 61, .45);
+  }
+  .shot-bar { display: flex; align-items: center; gap: .4rem; padding: .7rem .9rem; border-bottom: 1px solid var(--line); background: #eef2f6; }
+  .shot-bar i { width: .65rem; height: .65rem; border-radius: 50%; background: var(--line); display: block; }
+  .shot-bar span { margin-left: .6rem; font-family: var(--display); font-size: .85rem; color: var(--slate); }
+  .shot-body { padding: 2rem; min-height: 15rem; display: grid; align-content: center; gap: .8rem; }
+  .shot-body .l1 { height: 1.4rem; width: 60%; background: var(--harbor); border-radius: 6px; }
+  .shot-body .l2 { height: .8rem; width: 85%; background: var(--line); border-radius: 6px; }
+  .shot-body .l3 { height: .8rem; width: 70%; background: var(--line); border-radius: 6px; }
+  .shot-body .l4 { height: 2.4rem; width: 9rem; background: var(--marigold); border-radius: 99px; margin-top: .6rem; }
+  .work h3 { margin-bottom: .8rem; }
+  .work .meta { font-family: var(--display); color: var(--slate); font-size: 1rem; margin-bottom: 1rem; }
+  @media (max-width: 860px) { .work { grid-template-columns: 1fr; } }
+
+  /* Process: a real sequence, so numbers earn their place */
+  .steps { list-style: none; padding: 0; margin: 2.75rem 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; counter-reset: step; }
+  .steps li { counter-increment: step; border-top: 3px solid var(--harbor); padding-top: 1.1rem; }
+  .steps li::before { content: counter(step); font-family: var(--display); font-weight: 800; font-size: 2.2rem; line-height: 1; display: block; margin-bottom: .6rem; color: var(--slate); }
+  .steps h3 { font-size: 1.25rem; margin-bottom: .4rem; }
+  .steps p { font-size: 1.02rem; }
+  @media (max-width: 860px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr 1.3fr; gap: 3rem; align-items: start; }
+  .about blockquote { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.2; max-width: 20ch; }
+  @media (max-width: 860px) { .about { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+  /* Contact */
+  .contact { background: var(--harbor); color: var(--paper); border-radius: 1.5rem; padding: clamp(2rem, 6vw, 4rem); display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .contact h2 { color: var(--paper); }
+  .contact p { color: #d6dee8; }
+  form { display: grid; gap: 1rem; }
+  label { font-family: var(--display); font-weight: 500; font-size: 1rem; display: grid; gap: .35rem; }
+  input, select, textarea {
+    font: inherit; font-size: 1.05rem; padding: .75rem .9rem; border-radius: .6rem;
+    border: 1px solid #3a4d74; background: #1b2b4d; color: var(--paper); width: 100%;
+  }
+  textarea { min-height: 7rem; resize: vertical; }
+  .contact .btn { background: var(--marigold); border-color: var(--marigold); color: var(--harbor); justify-self: start; }
+  .contact .btn:hover { background: #ffc94d; border-color: #ffc94d; }
+  .form-note { font-size: .95rem; color: #aebbd0; margin: 0; }
+  @media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+
+  footer { padding: 2.5rem 0 3rem; font-family: var(--display); font-size: .95rem; color: var(--slate); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Mervin's Web Studio home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#14213D"/><path d="M14 44V20l12 14 12-14v24" fill="none" stroke="#F2B632" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="44" r="4" fill="#F2B632"/></svg>
+      Mervin's Web Studio
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="btn" href="#contact">Book a free call</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1>Websites built with the discipline of firmware.</h1>
+      <p class="lede">I'm an embedded systems engineer who builds websites for small businesses, rental hosts, and professionals. Every site is fast, secure, and simple for you to keep up to date.</p>
+      <div class="actions">
+        <a class="btn" href="#contact">Book a free 15-minute call</a>
+        <a class="btn ghost" href="#services">See packages and pricing</a>
+      </div>
+
+      <div class="readout" aria-live="polite">
+        <div>
+          <div class="readout-time" id="loadTime">&nbsp;</div>
+          <div class="readout-sentence" id="loadSentence">Measuring how fast this page loaded on your device…</div>
+          <div class="readout-bar" aria-hidden="true"><span id="loadBar"></span></div>
+        </div>
+        <div class="readout-notes">
+          <p>That number is <strong>real</strong>. It was measured in your browser just now, not copied from a benchmark.</p>
+          <p id="weightNote">Visitors leave slow sites before they ever see your menu, your listing, or your resume. Speed is built into every site I make.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="services">
+    <div class="wrap">
+      <h2>A site shaped around what you need it to do.</h2>
+      <p class="intro">Clear packages with starting prices, so you know the cost before we talk. Every build includes a custom domain setup, mobile-first design, basic SEO, and a walkthrough so you can edit your own content.</p>
+
+      <div class="services">
+        <article class="svc business">
+          <div class="for">For local and small businesses</div>
+          <h3>Business website</h3>
+          <div class="price">From $1,200</div>
+          <p>Get found on Google and turn visitors into calls, bookings, and walk-ins.</p>
+          <ul>
+            <li>Up to five pages: home, services, about, reviews, contact</li>
+            <li>Contact or booking form sent straight to your inbox</li>
+            <li>Google Business Profile setup and analytics</li>
+          </ul>
+        </article>
+
+        <article class="svc rental">
+          <div class="for">For Airbnb and short-term rental hosts</div>
+          <h3>Direct-booking site</h3>
+          <div class="price">From $1,500</div>
+          <p>Give repeat guests a place to book with you directly and keep more of every stay.</p>
+          <ul>
+            <li>Photo gallery, amenities, and house rules</li>
+            <li>Availability calendar and booking inquiries</li>
+            <li>Local guide pages that also help your search ranking</li>
+          </ul>
+        </article>
+
+        <article class="svc portfolio">
+          <div class="for">For engineers, consultants, and creatives</div>
+          <h3>Professional portfolio</h3>
+          <div class="price">From $400</div>
+          <p>Stand out to recruiters and clients with a site that shows your work instead of just listing it.</p>
+          <ul>
+            <li>Project showcase with case-study write-ups</li>
+            <li>Downloadable resume and contact links</li>
+            <li>Your own name as the domain</li>
+          </ul>
+        </article>
+
+        <article class="svc care">
+          <div class="for">For every client</div>
+          <h3>Care plan</h3>
+          <div class="price">From $40 <small>/ month</small></div>
+          <p>Hosting, security updates, uptime monitoring, and small edits whenever you need them.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="wrap">
+      <h2>Recent work</h2>
+      <div class="work">
+        <a class="shot" href="https://mervin-nguyen.vercel.app" target="_blank" rel="noopener" aria-label="Open the Mervin Nguyen portfolio site in a new tab">
+          <div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>mervin-nguyen.vercel.app</span></div>
+          <div class="shot-body" aria-hidden="true"><div class="l1"></div><div class="l2"></div><div class="l3"></div><div class="l4"></div></div>
+        </a>
+        <div>
+          <h3>Engineering portfolio</h3>
+          <div class="meta">Professional portfolio</div>
+          <p>A personal portfolio for an embedded systems engineer, built to present firmware and RTOS projects clearly to hiring managers.</p>
+          <p><a href="https://mervin-nguyen.vercel.app" target="_blank" rel="noopener">Visit the live site</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="process">
+    <div class="wrap">
+      <h2>From first call to launch in about two weeks.</h2>
+      <ol class="steps">
+        <li><h3>Free call</h3><p>We talk through your goals, your audience, and what the site needs to do.</p></li>
+        <li><h3>Plan and quote</h3><p>You get a fixed price and a simple page plan. No surprise invoices.</p></li>
+        <li><h3>Build and review</h3><p>I build the site and you review a live preview, with two rounds of changes included.</p></li>
+        <li><h3>Launch</h3><p>Your site goes live on your domain, and I show you how to update it yourself.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap about">
+      <blockquote>Firmware can't crash in the field. I build websites with the same standard.</blockquote>
+      <div>
+        <p>I'm Mervin Nguyen, an embedded firmware engineer based in San Mateo, California. My background is in safety-critical automotive systems, where code has to be fast, predictable, and reliable every single time.</p>
+        <p>I bring that mindset to the web. Your site won't be a heavy template stuffed with plugins. It will be lean, carefully tested, and built so that it keeps working long after launch.</p>
+        <p>I hold a Computer Engineering degree from UC Irvine and I'm completing an M.S. in Electrical and Computer Engineering at CU Boulder.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact-wrap">
+    <div class="wrap">
+      <div class="contact" id="contact">
+        <div>
+          <h2>Tell me about your project.</h2>
+          <p>Share a few details and I'll reply within one business day to set up a free 15-minute call.</p>
+          <p>Prefer email? Write to <a href="mailto:mervinnguyenembedded@gmail.com">mervinnguyenembedded@gmail.com</a>.</p>
+        </div>
+        <form id="inquiry" novalidate>
+          <label>Your name
+            <input name="name" autocomplete="name" required>
+          </label>
+          <label>What do you need?
+            <select name="type">
+              <option>Business website</option>
+              <option>Direct-booking site for a rental</option>
+              <option>Professional portfolio</option>
+              <option>Redesign of an existing site</option>
+              <option>Something else</option>
+            </select>
+          </label>
+          <label>A few details
+            <textarea name="details" placeholder="Your business, your current site if you have one, and your timeline"></textarea>
+          </label>
+          <button class="btn" type="submit">Send inquiry</button>
+          <p class="form-note" id="formNote">This opens your email app with your message ready to send.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="yr">2026</span> Mervin's Web Studio, a service of Mervin's Merchandise LLC</span>
+    <span>San Mateo, California</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Live page-speed readout
+  function showLoad() {
+    var t = document.getElementById('loadTime');
+    var s = document.getElementById('loadSentence');
+    var bar = document.getElementById('loadBar');
+    var weight = document.getElementById('weightNote');
+    try {
+      var nav = performance.getEntriesByType('navigation')[0];
+      var ms = nav && nav.loadEventEnd > 0 ? nav.loadEventEnd - nav.startTime : performance.now();
+      var secs = ms / 1000;
+      t.textContent = secs < 10 ? secs.toFixed(2) + 's' : Math.round(secs) + 's';
+      s.textContent = 'is how long this page took to fully load on your device.';
+      // Bar is scaled against a 3-second budget
+      bar.style.width = Math.max(4, Math.min(100, (ms / 3000) * 100)) + '%';
+
+      var bytes = (nav && nav.transferSize) || 0;
+      performance.getEntriesByType('resource').forEach(function (r) { bytes += r.transferSize || 0; });
+      if (bytes > 0) {
+        weight.innerHTML = 'The whole page weighed <strong>' + Math.round(bytes / 1024) + ' KB</strong>. Visitors leave slow sites before they see your menu, your listing, or your resume, so speed is built into every site I make.';
+      }
+    } catch (e) {
+      t.textContent = 'Fast';
+      s.textContent = 'Your browser did not report timing, but this page is built to load quickly everywhere.';
+    }
+  }
+  if (document.readyState === 'complete') { setTimeout(showLoad, 0); }
+  else { window.addEventListener('load', function () { setTimeout(showLoad, 0); }); }
+
+  // Inquiry form opens a prefilled email
+  document.getElementById('inquiry').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = e.target;
+    var name = f.name.value.trim();
+    var note = document.getElementById('formNote');
+    if (!name) { note.textContent = 'Add your name so I know who to reply to.'; f.name.focus(); return; }
+    var subject = 'Website inquiry: ' + f.type.value;
+    var body = 'Name: ' + name + '\nProject: ' + f.type.value + '\n\n' + f.details.value.trim();
+    window.location.href = 'mailto:mervinnguyenembedded@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    note.textContent = 'Your email app should open now. If it did not, write to mervinnguyenembedded@gmail.com.';
+  });
+</script>
+</body>
+</html>

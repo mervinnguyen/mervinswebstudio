@@ -4,7 +4,7 @@ Storefront site for Mervin's Web Studio, a service of Mervin's Merchandise LLC. 
 
 ## Stack
 
-A single static `index.html` with inline CSS and JavaScript and no build step. Fonts come from Google Fonts.
+A static site with no build step: `index.html` (home page, inline CSS and form/menu behavior) and `faq.html` (FAQ page with an accordion and FAQ structured data), both sharing `animations.js` for motion: word-by-word headline, rotating audience word, count-up stats, scroll reveals and progress bar, parallax orbs, cursor glow, card spotlights, magnetic buttons, and an audience marquee. Motion is skipped when the visitor prefers reduced motion, and the pages work without JavaScript. Fonts come from Google Fonts.
 
 ## Local preview
 
@@ -19,5 +19,5 @@ Hosted on Vercel (project `mervinswebstudio`). Once this repo is linked to the p
 ## To do
 
 - Confirm package prices
-- Add more projects to the Recent work section
+- Add more projects and client testimonials to the Recent work section (screenshots of the live sites sit in `images/`; retake them when a site changes)
 - Register and connect mervinswebstudio.com

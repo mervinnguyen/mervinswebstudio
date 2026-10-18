@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Direct-Booking Website for Airbnb and Rental Hosts | Mervin's Web Studio</title>
+<meta name="description" content="Direct-booking websites for Airbnb and short-term rental hosts. Keep more of every booking and own your guest relationships. From $1,500, live in about two weeks.">
+<link rel="canonical" href="https://mervinswebstudio.com/airbnb-direct-booking-website.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mervinswebstudio.com/airbnb-direct-booking-website.html">
+<meta property="og:title" content="Direct-Booking Website for Airbnb and Rental Hosts | Mervin's Web Studio">
+<meta property="og:description" content="Direct-booking websites for Airbnb and short-term rental hosts. Keep more of every booking and own your guest relationships. From $1,500, live in about two weeks.">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%2314213D'/><path d='M14 44V20l12 14 12-14v24' fill='none' stroke='%23F2B632' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/><circle cx='50' cy='44' r='4' fill='%23F2B632'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fog: #E9EEF2; --paper: #F7F9FB; --harbor: #14213D; --slate: #5B6B7F; --marigold: #F2B632; --line: #C9D3DD;
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --wrap: 72rem;
+    box-sizing: border-box;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+  body { margin: 0; background: var(--fog); color: var(--harbor); font-family: var(--body); font-size: 1.125rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--marigold); outline-offset: 3px; border-radius: 4px; }
+  .wrap { width: min(var(--wrap), 100% - 2.5rem); margin-inline: auto; }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.08; margin: 0; letter-spacing: -0.02em; }
+  p { margin: 0 0 1em; max-width: 62ch; }
+
+  .progress { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 30; pointer-events: none; transform-origin: 0 50%; transform: scaleX(var(--p, 0)); background: linear-gradient(90deg, var(--marigold), #ffdd8a); }
+  .top { position: sticky; top: 0; z-index: 10; background: rgba(233, 238, 242, .92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); transition: box-shadow 300ms ease, background 300ms ease; }
+  .top.scrolled { background: rgba(247, 249, 251, .94); box-shadow: 0 12px 30px -20px rgba(20, 33, 61, .45); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 4.25rem; gap: 1rem; }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 1.2rem; text-decoration: none; display: flex; align-items: center; gap: .6rem; }
+  .brand-mark { width: 1.9rem; height: 1.9rem; }
+  .nav { display: flex; gap: 1.75rem; font-family: var(--display); font-weight: 500; font-size: 1rem; }
+  .nav a { text-decoration: none; position: relative; }
+  .nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .nav a[aria-current="page"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -.35rem; height: 3px; border-radius: 3px; background: var(--marigold); }
+  .btn { display: inline-block; font-family: var(--display); font-weight: 700; font-size: 1rem; padding: .8rem 1.35rem; border-radius: 999px; text-decoration: none; border: 2px solid var(--harbor); background: var(--harbor); color: var(--paper); cursor: pointer; transition: transform 220ms ease, background 200ms ease, box-shadow 200ms ease; }
+  .btn:hover { background: #1f3160; border-color: #1f3160; box-shadow: 0 14px 26px -14px rgba(20, 33, 61, .65); }
+  .btn.gold { background: var(--marigold); border-color: var(--marigold); color: var(--harbor); }
+  .btn.gold:hover { background: #ffc94d; border-color: #ffc94d; }
+  .menu-btn, .nav .nav-cta { display: none; }
+  @media (max-width: 760px) {
+    .top .wrap { height: 3.75rem; gap: .6rem; }
+    .brand { font-size: 1.05rem; white-space: nowrap; margin-right: auto; }
+    .brand-mark { width: 1.7rem; height: 1.7rem; }
+    .top .btn { padding: .55rem 1rem; font-size: .92rem; white-space: nowrap; }
+    .menu-btn { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; flex: none; border: 1px solid var(--line); border-radius: .7rem; background: var(--paper); color: var(--harbor); cursor: pointer; }
+    .menu-btn svg { width: 1.3rem; height: 1.3rem; }
+    .menu-btn .close, .top.open .menu-btn .open { display: none; }
+    .top.open .menu-btn .close { display: block; }
+    .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 20px 30px -20px rgba(20, 33, 61, .35); padding: .5rem 1.25rem 1rem; }
+    .top.open .nav { display: flex; }
+    .nav a { padding: .9rem 0; font-size: 1.1rem; border-bottom: 1px solid var(--fog); }
+    .nav a:last-child { border-bottom: 0; }
+    .nav a[aria-current="page"]::after { display: none; }
+    .nav a[aria-current="page"] { font-weight: 700; }
+    .nav .nav-cta { display: block; margin-top: .75rem; padding: .9rem 1rem; text-align: center; color: var(--paper); }
+  }
+  @media (max-width: 480px) { .top .wrap > .btn { display: none; } }
+
+  .faq-hero { position: relative; overflow: clip; padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(1.5rem, 4vw, 2.5rem); background: radial-gradient(50rem 24rem at 90% -10%, rgba(242, 182, 50, .24), transparent 60%); }
+  .faq-head .eyebrow { display: flex; align-items: center; gap: .65rem; margin: 0 0 1.15rem; font-family: var(--display); font-size: .78rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: var(--slate); }
+  .faq-head .eyebrow::before { content: ""; width: .6rem; height: .6rem; border-radius: 50%; background: var(--marigold); }
+  .faq-head h1 { font-size: clamp(2.5rem, 6.5vw, 4.5rem); font-weight: 800; max-width: 16ch; }
+  .faq-head p.lede { margin-top: 1.5rem; font-size: clamp(1.1rem, 2vw, 1.3rem); color: #2c3a55; }
+
+  .faq-list { display: grid; gap: .9rem; padding: 1.5rem 0 clamp(3rem, 7vw, 5rem); max-width: 52rem; }
+  .faq-list details { background: var(--paper); border: 1px solid var(--line); border-radius: 1rem; transition: box-shadow 250ms ease, border-color 250ms ease; }
+  .faq-list details:hover { box-shadow: 0 18px 36px -26px rgba(20, 33, 61, .55); }
+  .faq-list details[open] { border-color: var(--harbor); }
+  .faq-list summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.15rem 1.4rem; font-family: var(--display); font-weight: 700; font-size: 1.2rem; line-height: 1.25; }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after { content: ""; flex: none; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--harbor) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F2B632' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M12 6v12M6 12h12'/%3E%3C/svg%3E") center / 1.1rem no-repeat; transition: transform 300ms ease; }
+  .faq-list details[open] summary::after { transform: rotate(135deg); }
+  .faq-list .answer { padding: 0 1.4rem 1.2rem; color: #2c3a55; }
+  .faq-list .answer p:last-child { margin-bottom: 0; }
+
+  .cta { background: linear-gradient(135deg, var(--harbor), #223a6b); color: var(--paper); border-radius: 1.5rem; padding: clamp(2rem, 6vw, 3.5rem); margin-bottom: clamp(3rem, 7vw, 5rem); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .cta h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800; max-width: 20ch; }
+  .cta p { color: #d6dee8; margin: .6rem 0 0; }
+
+  footer { padding: 2.5rem 0 3rem; font-family: var(--display); font-size: .95rem; color: var(--slate); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+  @media (max-width: 560px) { body { font-size: 1.0625rem; } .cta .btn { display: block; width: 100%; text-align: center; } footer .wrap { flex-direction: column; gap: .5rem; } .faq-list summary { font-size: 1.1rem; } }
+
+  .motion-ready [data-reveal="up"] { opacity: 0; transform: translateY(1.25rem); transition: opacity 700ms ease, transform 700ms cubic-bezier(.2, .7, .2, 1); transition-delay: var(--reveal-delay, 0ms); }
+  .motion-ready [data-reveal="up"].is-visible { opacity: 1; transform: translateY(0); }
+</style>
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Service", "name": "A direct-booking website for your rental", "provider": {"@type": "ProfessionalService", "name": "Mervin's Web Studio", "url": "https://mervinswebstudio.com/"}, "areaServed": "US", "description": "Direct-booking websites for Airbnb and short-term rental hosts. Keep more of every booking and own your guest relationships. From $1,500, live in about two weeks."}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why take direct bookings?", "acceptedAnswer": {"@type": "Answer", "text": "Platform fees add up on every stay. A direct-booking site lets repeat guests book without the fee and gives you their contact details, so the relationship is yours."}}, {"@type": "Question", "name": "What is included?", "acceptedAnswer": {"@type": "Answer", "text": "Photo galleries, amenities and house rules, availability and pricing display, an inquiry or booking flow, mobile-first design, basic SEO, and custom domain setup."}}, {"@type": "Question", "name": "Can I still use Airbnb?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Keep your listings active and use the site to capture repeat guests and referrals."}}, {"@type": "Question", "name": "How long does it take?", "acceptedAnswer": {"@type": "Answer", "text": "About two weeks from first call to launch, with two rounds of changes included."}}]}]</script>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Mervin's Web Studio home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#14213D"/><path d="M14 44V20l12 14 12-14v24" fill="none" stroke="#F2B632" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="44" r="4" fill="#F2B632"/></svg>
+      <span class="brand-name">Mervin's Web Studio</span>
+    </a>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#about">About</a>
+      <a href="faq.html">FAQ</a>
+      <a class="btn nav-cta" href="index.html#contact">Book a free call</a>
+    </nav>
+    <a class="btn" href="index.html#contact">Book a free call</a>
+    <button class="menu-btn" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
+      <svg class="open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="faq-hero">
+    <div class="wrap faq-head">
+      <p class="eyebrow">Mervin's Web Studio</p>
+      <h1>A direct-booking website for your rental.</h1>
+      <p class="lede">Stop giving 15% of every stay to a platform. Get a fast, beautiful site of your own where guests can find you, see your property, and book direct. From $1,500.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="faq-list">
+      <details open>
+        <summary>Why take direct bookings?</summary>
+        <div class="answer"><p>Platform fees add up on every stay. A direct-booking site lets repeat guests book without the fee and gives you their contact details, so the relationship is yours.</p></div>
+      </details>
+      <details>
+        <summary>What is included?</summary>
+        <div class="answer"><p>Photo galleries, amenities and house rules, availability and pricing display, an inquiry or booking flow, mobile-first design, basic SEO, and custom domain setup.</p></div>
+      </details>
+      <details>
+        <summary>Can I still use Airbnb?</summary>
+        <div class="answer"><p>Yes. Keep your listings active and use the site to capture repeat guests and referrals.</p></div>
+      </details>
+      <details>
+        <summary>How long does it take?</summary>
+        <div class="answer"><p>About two weeks from first call to launch, with two rounds of changes included.</p></div>
+      </details>
+    </div>
+
+    <div class="cta" data-reveal="up">
+      <div>
+        <h2>Want a site like Creekside Apartments?</h2>
+        <p>Book a free call and get a fixed-price quote.</p>
+      </div>
+      <a class="btn gold" href="index.html#contact">Book a free call</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="yr">2026</span> Mervin's Web Studio, a service of Mervin's Merchandise LLC</span>
+    <span>San Mateo, California</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  var topBar = document.querySelector('.top');
+  var menuBtn = topBar.querySelector('.menu-btn');
+  function setMenu(open) {
+    topBar.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  menuBtn.addEventListener('click', function () { setMenu(!topBar.classList.contains('open')); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+</script>
+<script src="animations.js" defer></script>
+</body>
+</html>

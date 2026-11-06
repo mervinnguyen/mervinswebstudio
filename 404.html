@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found | Mervin's Web Studio</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="/images/mervin-nguyen.webp">
+<link rel="stylesheet" href="/fonts.css">
+<style>
+  :root { --fog: #E9EEF2; --harbor: #14213D; --slate: #5B6B7F; --marigold: #F2B632; --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif; --body: "Source Serif 4", Georgia, serif; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 2rem; background: var(--harbor); color: #fff; font-family: var(--body); font-size: 1.125rem; line-height: 1.6; text-align: center; }
+  .code { font-family: var(--display); font-weight: 800; font-size: clamp(5rem, 22vw, 11rem); line-height: 1; letter-spacing: -.04em; color: var(--marigold); margin: 0; animation: float 4s ease-in-out infinite; }
+  h1 { font-family: var(--display); font-size: clamp(1.6rem, 5vw, 2.4rem); margin: .5rem 0 1rem; letter-spacing: -.02em; }
+  p { margin: 0 auto 2rem; max-width: 44ch; color: #c9d3dd; }
+  .links { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+  a { font-family: var(--display); font-weight: 700; text-decoration: none; padding: .8rem 1.35rem; border-radius: 999px; border: 2px solid var(--marigold); transition: transform .2s, background .2s; }
+  a.primary { background: var(--marigold); color: var(--harbor); }
+  a:not(.primary) { color: #fff; }
+  a:hover { transform: translateY(-2px); }
+  a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  @keyframes float { 50% { transform: translateY(-10px); } }
+  @media (prefers-reduced-motion: reduce) { .code, a { animation: none; transition: none; } }
+</style>
+</head>
+<body>
+  <main>
+    <p class="code" aria-hidden="true">404</p>
+    <h1>This page took a wrong turn.</h1>
+    <p>The page you were looking for does not exist or has moved. Head back and pick up where you left off.</p>
+    <div class="links">
+      <a class="primary" href="/">Back to home</a>
+      <a href="/#contact">Book a free call</a>
+    </div>
+  </main>
+</body>
+</html>

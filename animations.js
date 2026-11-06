@@ -179,6 +179,7 @@
     '.fx-top{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(20,22,28,.85);color:#fff;font-size:18px;cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s;z-index:50;backdrop-filter:blur(6px)}' +
     '.fx-top.show{opacity:1;transform:none;pointer-events:auto}' +
     '.fx-top:hover{border-color:rgba(255,255,255,.5)}' +
+    '@media (max-width:760px){.fx-top{right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));width:48px;height:48px}}' +
     '.fx-tilting{transition:transform .12s ease-out,box-shadow .2s !important;will-change:transform}' +
     '.fx-tilting{box-shadow:0 18px 40px -18px rgba(0,0,0,.55)}' +
     '.fx-shine{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .25s;background:radial-gradient(260px circle at var(--sx,50%) var(--sy,50%),rgba(255,255,255,.10),transparent 60%)}' +

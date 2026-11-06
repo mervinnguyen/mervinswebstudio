@@ -245,6 +245,18 @@
   .contact .btn { background: var(--marigold); border-color: var(--marigold); color: var(--harbor); justify-self: start; }
   .contact .btn:hover { background: #ffc94d; border-color: #ffc94d; }
   .form-note { font-size: .95rem; color: #aebbd0; margin: 0; }
+  .form-note.error { color: #ffb4a8; }
+  .form-note.ok { color: #9fe3b4; }
+  .contact input[aria-invalid="true"] { border-color: #ff8a7a; outline-color: #ff8a7a; }
+  .sticky-cta { display: none; }
+  @media (max-width: 760px) {
+    .sticky-cta {
+      display: block; position: fixed; left: 1rem; right: 5rem; bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); z-index: 40;
+      text-align: center; box-shadow: 0 10px 30px -10px rgba(20,33,61,.6);
+      transform: translateY(140%); transition: transform .3s ease;
+    }
+    .sticky-cta.show { transform: none; }
+  }
   @media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
 
   footer { padding: 2.5rem 0 3rem; font-family: var(--display); font-size: .95rem; color: var(--slate); }
@@ -610,12 +622,14 @@
             <textarea name="details" placeholder="Your business, your current site if you have one, and your timeline"></textarea>
           </label>
           <button class="btn" type="submit">Send inquiry</button>
-          <p class="form-note" id="formNote">This opens your email app with your message ready to send.</p>
+          <p class="form-note" id="formNote" role="status" aria-live="polite">This opens your email app with your message ready to send.</p>
         </form>
       </div>
     </div>
   </section>
 </main>
+
+<a class="btn sticky-cta" id="stickyCta" href="#contact">Book a free call</a>
 
 <footer>
   <div class="wrap">
@@ -673,12 +687,32 @@
     var f = e.target;
     var name = f.name.value.trim();
     var note = document.getElementById('formNote');
-    if (!name) { note.textContent = 'Add your name so I know who to reply to.'; f.name.focus(); return; }
+    f.name.removeAttribute('aria-invalid');
+    note.className = 'form-note';
+    if (!name) {
+      note.textContent = 'Add your name so I know who to reply to.';
+      note.classList.add('error');
+      f.name.setAttribute('aria-invalid', 'true');
+      f.name.focus();
+      return;
+    }
     var subject = 'Website inquiry: ' + f.type.value;
     var body = 'Name: ' + name + '\nProject: ' + f.type.value + '\n\n' + f.details.value.trim();
     window.location.href = 'mailto:mervinnguyen@mervinsmerchandise.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     note.textContent = 'Your email app should open now. If it did not, write to mervinnguyen@mervinsmerchandise.com or text 657.712.0003.';
+    note.classList.add('ok');
   });
+
+  // Mobile call-to-action appears after the hero and hides at the contact form
+  var cta = document.getElementById('stickyCta');
+  var contactEl = document.getElementById('contact');
+  function toggleCta() {
+    var pastHero = window.pageYOffset > window.innerHeight * 0.7;
+    var atContact = contactEl.getBoundingClientRect().top < window.innerHeight * 0.8;
+    cta.classList.toggle('show', pastHero && !atContact);
+  }
+  window.addEventListener('scroll', toggleCta, { passive: true });
+  toggleCta();
 </script>
 <script src="animations.js" defer></script>
 </body>

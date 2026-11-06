@@ -22,6 +22,7 @@
     { selector: '.services .svc', stagger: true },
     { selector: '.faq-head, .faq-list details', stagger: true },
     { selector: '.work > *', stagger: true },
+    { selector: '.quotes figure', stagger: true },
     { selector: '.steps > li', stagger: true },
     { selector: '.about > *', stagger: true }
   ];

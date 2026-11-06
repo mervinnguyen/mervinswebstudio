@@ -216,6 +216,11 @@
 
   /* Process: a real sequence, so numbers earn their place */
   .steps { list-style: none; padding: 0; margin: 2.75rem 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; counter-reset: step; }
+  .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1.5rem; margin: 2.5rem 0 0; }
+  .quotes figure { margin: 0; background: var(--paper); border: 1px solid var(--line); border-radius: 1rem; padding: 1.75rem; }
+  .quotes blockquote { margin: 0 0 1rem; font-size: 1.2rem; line-height: 1.5; }
+  .quotes figcaption { font-family: var(--display); font-weight: 700; font-size: 1rem; }
+  .quotes figcaption span { display: block; font-weight: 500; color: var(--slate); }
   .steps li { counter-increment: step; border-top: 3px solid var(--harbor); padding-top: 1.1rem; }
   .steps li::before { content: counter(step); font-family: var(--display); font-weight: 800; font-size: 2.2rem; line-height: 1; display: block; margin-bottom: .6rem; color: var(--slate); }
   .steps h3 { font-size: 1.25rem; margin-bottom: .4rem; }
@@ -562,6 +567,19 @@
           <p>A personal portfolio for an embedded systems engineer, built to present firmware and RTOS projects clearly to hiring managers.</p>
           <p><a href="https://mervin-s-embedded-portfolio.vercel.app" target="_blank" rel="noopener">Visit the live site</a></p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials: add real quotes below, then remove the hidden attribute to publish. -->
+  <section class="block" id="testimonials" hidden>
+    <div class="wrap">
+      <h2>What clients say.</h2>
+      <div class="quotes">
+        <figure>
+          <blockquote>Replace with a real client quote.</blockquote>
+          <figcaption>Client name <span>Business or role</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>

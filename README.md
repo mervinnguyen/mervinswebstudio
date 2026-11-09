@@ -16,6 +16,15 @@ Then open http://localhost:8000.
 
 Hosted on Vercel (project `mervinswebstudio`). Once this repo is linked to the project, every push to `main` deploys to production. `vercel.json` configures revalidating browser caches for static images, fonts, and JavaScript.
 
+## Optional integrations
+
+Edit `site-config.js` before production launch:
+
+- `MWS_FORM_ENDPOINT`: a Formspree-compatible endpoint that accepts `POST` requests. The contact form keeps its email fallback when this is blank.
+- `MWS_ANALYTICS_DOMAIN`: the domain registered with Plausible. Analytics stays disabled when this is blank.
+
+Do not put API keys or private credentials in this static site. Use a server-side function or the provider's public form endpoint.
+
 ## To do
 
 - Confirm package prices

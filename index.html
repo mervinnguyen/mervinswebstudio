@@ -12,13 +12,15 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mervin's Web Studio">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://mervinswebstudio.com/images/portfolio-embedded.webp">
-<meta property="og:image:alt" content="A preview of a professional portfolio website built by Mervin's Web Studio">
+<meta property="og:image" content="https://mervinswebstudio.com/images/social-preview.svg">
+<meta property="og:image:alt" content="Mervin's Web Studio creates fast, reliable websites">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mervin's Web Studio | Fast, reliable websites">
 <meta name="twitter:description" content="Fast, reliable websites for small businesses, rental hosts, and professionals.">
-<meta name="twitter:image" content="https://mervinswebstudio.com/images/portfolio-embedded.webp">
-<meta name="twitter:image:alt" content="A preview of a professional portfolio website built by Mervin's Web Studio">
+<meta name="twitter:image" content="https://mervinswebstudio.com/images/social-preview.svg">
+<meta name="twitter:image:alt" content="Mervin's Web Studio creates fast, reliable websites">
 <link rel="preload" as="image" href="images/mervin-nguyen.webp" fetchpriority="high">
 <link rel="preload" href="fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -604,7 +606,7 @@
         <div>
           <h3>Creekside Apartments Airbnb</h3>
           <div class="meta">Direct-booking site &middot; San Mateo, CA</div>
-          <p>A direct-booking site for a San Mateo rental, with a photo gallery, amenities, a neighborhood guide, an FAQ, and an easy way for guests to message the host.</p>
+          <p>A direct-booking site for a San Mateo rental, with a photo gallery, amenities, a neighborhood guide, an FAQ, and a clear path for repeat guests to inquire directly.</p>
           <p><a href="https://creekside-apartments-roommate.vercel.app" target="_blank" rel="noopener">Visit the live site</a></p>
         </div>
       </div>
@@ -616,7 +618,7 @@
         <div>
           <h3>Engineering portfolio</h3>
           <div class="meta">Professional portfolio</div>
-          <p>A personal portfolio for an embedded systems engineer, built to present firmware and RTOS projects clearly to hiring managers.</p>
+          <p>A personal portfolio for an embedded systems engineer, built to turn firmware and RTOS projects into clear case studies for hiring managers.</p>
           <p><a href="https://mervin-s-embedded-portfolio.vercel.app" target="_blank" rel="noopener">Visit the live site</a></p>
         </div>
       </div>
@@ -692,7 +694,7 @@
             <textarea name="details" placeholder="Your business, your current site if you have one, and your timeline"></textarea>
           </label>
           <button class="btn" type="submit">Send inquiry</button>
-          <p class="form-note" id="formNote" role="status" aria-live="polite">This opens your email app with your message ready to send.</p>
+          <p class="form-note" id="formNote" role="status" aria-live="polite">Your inquiry is sent securely when the form service is configured; otherwise it opens your email app.</p>
         </form>
       </div>
     </div>
@@ -704,7 +706,7 @@
 <footer>
   <div class="wrap">
     <span>&copy; <span id="yr">2026</span> Mervin's Web Studio, a service of Mervin's Merchandise LLC</span>
-    <span><a href="airbnb-direct-booking-website.html">Rental sites</a> · <a href="small-business-website.html">Business sites</a> · <a href="professional-portfolio-website.html">Portfolios</a> · San Mateo, California</span>
+    <span><a href="airbnb-direct-booking-website.html">Rental sites</a> · <a href="small-business-website.html">Business sites</a> · <a href="professional-portfolio-website.html">Portfolios</a> · <a href="privacy.html">Privacy</a> · San Mateo, California</span>
   </div>
 </footer>
 
@@ -751,12 +753,13 @@
   if (document.readyState === 'complete') { setTimeout(showLoad, 0); }
   else { window.addEventListener('load', function () { setTimeout(showLoad, 0); }); }
 
-  // Inquiry form opens a prefilled email
-  document.getElementById('inquiry').addEventListener('submit', function (e) {
+  // Inquiry form uses a configured endpoint when available and keeps a mailto fallback.
+  document.getElementById('inquiry').addEventListener('submit', async function (e) {
     e.preventDefault();
     var f = e.target;
     var name = f.name.value.trim();
     var note = document.getElementById('formNote');
+    var submit = f.querySelector('button[type="submit"]');
     f.name.removeAttribute('aria-invalid');
     note.className = 'form-note';
     if (!name) {
@@ -768,9 +771,29 @@
     }
     var subject = 'Website inquiry: ' + f.type.value;
     var body = 'Name: ' + name + '\nProject: ' + f.type.value + '\n\n' + f.details.value.trim();
-    window.location.href = 'mailto:mervinnguyen@mervinsmerchandise.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    note.textContent = 'Your email app should open now. If it did not, write to mervinnguyen@mervinsmerchandise.com or text 657.712.0003.';
-    note.classList.add('ok');
+    var endpoint = window.MWS_FORM_ENDPOINT;
+    if (!endpoint) {
+      window.location.href = 'mailto:mervinnguyen@mervinsmerchandise.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      note.textContent = 'Your email app should open now. If it did not, write to mervinnguyen@mervinsmerchandise.com or text 657.712.0003.';
+      note.classList.add('ok');
+      return;
+    }
+    submit.disabled = true;
+    submit.textContent = 'Sending…';
+    try {
+      var response = await fetch(endpoint, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } });
+      if (!response.ok) { throw new Error('The inquiry service returned ' + response.status); }
+      f.reset();
+      note.textContent = 'Thanks — your inquiry was sent. I will reply within one business day.';
+      note.classList.add('ok');
+    } catch (error) {
+      note.textContent = 'The inquiry could not be sent. Please email mervinnguyen@mervinsmerchandise.com or text 657.712.0003.';
+      note.classList.add('error');
+      console.error(error);
+    } finally {
+      submit.disabled = false;
+      submit.textContent = 'Send inquiry';
+    }
   });
 
   // Mobile call-to-action appears after the hero and hides at the contact form
@@ -785,5 +808,7 @@
   toggleCta();
 </script>
 <script src="animations.js" defer></script>
+<script src="site-config.js" defer></script>
+<script src="analytics.js" defer></script>
 </body>
 </html>
